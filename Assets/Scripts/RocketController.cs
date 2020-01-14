@@ -5,55 +5,62 @@ using UnityEngine;
 
 public class RocketController : MonoBehaviour
 {
-
+    // Cached references
     private Rigidbody rb;
-    private float speed = 10f;
-    private AudioSource thrustingRocket;
+    private AudioSource aud_Thrust;
 
-    // Start is called before the first frame update
+    // Properties
+    private float speed = 10f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        thrustingRocket = GetComponent<AudioSource>();
+        aud_Thrust = GetComponent<AudioSource>();
     }
-
-    // Update is called once per frame
     void Update()
     {
+        Rotate();
+        Thrust();
+    }
+
+    // Checks and apply rocket rotation
+    private void Rotate()
+    {
+
+        rb.freezeRotation = true;
+
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.Rotate(Vector3.back);
-        } 
-        
+        }
+
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.Rotate(Vector3.forward);
         }
 
+        rb.freezeRotation = false;
+    }
+    // Checks and apply thrust force to the rocket
+    private void Thrust()
+    {
         if (Input.GetKey(KeyCode.Space))
         {
             rb.AddRelativeForce(Vector3.up);
 
-            if (!thrustingRocket.isPlaying)
+            if (!aud_Thrust.isPlaying)
             {
-                PlayThrustAudio();
+                aud_Thrust.Play();
             }
 
         }
 
         else
         {
-            StopThrustAudio();
+            aud_Thrust.Stop();
         }
     }
 
-    private void StopThrustAudio()
-    {
-        thrustingRocket.Stop();
-    }
-
-    private void PlayThrustAudio()
-    {
-        thrustingRocket.Play();
-    }
 }
+
+
