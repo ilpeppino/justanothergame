@@ -63,7 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scripts\RocketController.cs" />
     <None Include="Assets\AtomRocket\ReadMe.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>F:/gitrepo/Just Another Game/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
