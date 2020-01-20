@@ -20,6 +20,6 @@ public class RocketControllerDI
         
         transform.Rotate(-1 * Vector3.forward * Time.deltaTime * rocketSettings.TurnSpeed * inputManager.Rotation);
         // transform.position += transform.position * Time.deltaTime * rocketSettings.MoveSpeed * inputManager.Thrust;
-        rb.AddForce(Vector3.up * rocketSettings.MoveSpeed * Time.deltaTime * inputManager.Thrust);
+        rb.AddRelativeForce(Vector3.up * rocketSettings.MoveSpeed * Time.deltaTime * inputManager.Thrust);
     }
 }    

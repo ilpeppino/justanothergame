@@ -4,12 +4,14 @@ public class Rocket : MonoBehaviour
 {
 
     [SerializeField] private RocketSettings rocketSettings;
+    private Rigidbody rb;
     private IInputManager inputManager;
     private RocketControllerDI rocketController;
 
     private void Awake()
     {
-        var rigidbody = GetComponent<Rigidbody>();
+        rb = GetComponent<Rigidbody>();
+        Debug.Log(rb.name);
         inputManager = new InputManager();
         rocketController = new RocketControllerDI(inputManager, rocketSettings, transform);
     }
@@ -17,7 +19,7 @@ public class Rocket : MonoBehaviour
     private void Update()
     {
         inputManager.ReadInput();
-        rocketController.Move(GetComponent<Rigidbody>());
+        rocketController.Move(rb);
     }
 
 }
